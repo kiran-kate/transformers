@@ -356,6 +356,7 @@ class DataCollatorForLanguageModeling:
             if self.tokenizer.pad_token_id is not None:
                 labels[labels == self.tokenizer.pad_token_id] = -100
             batch["labels"] = labels
+        del batch['id']
         return batch
 
     def mask_tokens(

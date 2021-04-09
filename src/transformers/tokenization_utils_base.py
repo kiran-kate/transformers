@@ -694,7 +694,7 @@ class BatchEncoding(UserDict):
                 if prepend_batch_axis:
                     value = [value]
 
-                if not is_tensor(value):
+                if not is_tensor(value) and key != "id":
                     tensor = as_tensor(value)
 
                     # Removing this for now in favor of controlling the shape with `prepend_batch_axis`

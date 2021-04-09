@@ -482,6 +482,7 @@ class Trainer:
             # Labels may be named label or label_ids, the default data collator handles that.
             self._signature_columns += ["label", "label_ids"]
         columns = [k for k in self._signature_columns if k in dataset.column_names]
+        columns.append("id")
         ignored_columns = list(set(dataset.column_names) - set(self._signature_columns))
         if len(ignored_columns) > 0:
             dset_description = "" if description is None else f"in the {description} set "
@@ -878,7 +879,6 @@ class Trainer:
             kwargs:
                 Additional keyword arguments used to hide deprecated arguments
         """
-
         # memory metrics - must set up as early as possible
         self._memory_tracker.start()
 
